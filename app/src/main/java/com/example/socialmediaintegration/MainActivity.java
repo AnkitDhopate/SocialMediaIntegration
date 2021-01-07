@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity
 
     private FirebaseAuth firebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
-    private CallbackManager mCallbackManager;  /* The CallbackManager manages the callbacks into the FacebookSdk from an Activity's or Fragment's onActivityResult() method. */
+    /* The CallbackManager manages the callbacks into the FacebookSdk from an Activity's or Fragment's onActivityResult() method. */
+    private CallbackManager mCallbackManager;
     private FirebaseAuth.AuthStateListener authStateListener;
     private AccessTokenTracker accessTokenTracker;
 
@@ -83,7 +84,6 @@ public class MainActivity extends AppCompatActivity
                 changeActivity(personName, personGivenName, personFamilyName, personEmail, personId, personPhoto.toString());
             }
         }
-        //updateUI(account);
         /*Google SignIn*/
 
         /*Facebook SignIn*/
@@ -119,7 +119,6 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         };
-        // Check Whether the user is logged in or not
 
 
         //SignOut Feature
@@ -131,7 +130,6 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         };
-        //SignOut Feature
         /*Facebook SignIn*/
 
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +164,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);  // to pass the login results to the LoginManager via mCallbackManager.
+        // to pass the login results to the LoginManager via mCallbackManager.
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
@@ -200,7 +199,6 @@ public class MainActivity extends AppCompatActivity
             }
 
             // Signed in successfully, show authenticated UI.
-            //updateUI(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -235,6 +233,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        firebaseAuth.addAuthStateListener(authStateListener);  // So that the authStateListener Works at line no 112
+        firebaseAuth.addAuthStateListener(authStateListener);
     }
 }
